@@ -9,7 +9,7 @@ This is *Platform Blast*! Prepare to move a platform horizontally to keep a ball
 
 ## How to Play
 
-You will be in a box application with sets of blocks in the middle and a platform at the bottom. You will move the platform with your 'Left' and 'Right' arrows, and if you want 'A' and 'D'. If you drop the ball you lose, and if you keep it up you keep playing. The game will get harder after every hit, with the ball bouncing off the blocks and the platforms faster. Don't blink!
+You will be in a box application with sets of blocks in the middle and a platform at the bottom. You will move the platform with your `Left` and `Right` arrows, and if you want `A` and `D`. If you drop the ball you lose, and if you keep it up you keep playing. The game will get harder after every hit, with the ball bouncing off the blocks and the platforms faster. Don't blink!
 
 ---
 
@@ -22,7 +22,7 @@ Features include Collision detection between the ball, the platform, the blocks,
 
 ## Installation / How to Run
 
-Once you download the file and put it in your python folder, open windows powershell. Once you change the location to your python folder using "cd (python folder name)," type 'py NolanGame.py' and the program should pop up.
+Once you download the file and put it in your python folder, open windows powershell. Once you change the location to your python folder using "cd (python folder name)," type `py NolanGame.py` and the program should pop up.
 
 ## Team Members and Roles
 
