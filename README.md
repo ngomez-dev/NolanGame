@@ -15,3 +15,9 @@ You will be in a box application with sets of blocks in the middle and a platfor
 Features include Collision detection between the ball, the platform, the blocks, and the powerups. It also includes things like score tracking as you burn through more blocks and sound effects whenever the ball hits anything
 
 # Installation / How to Run
+
+Once you download the file and put it in your python folder, open windows powershell. Once you change the location to your python folder using "cd (python folder name)," type "py NolanGame.py" and the program should pop up.
+
+# Team Members and ROles
+
+Nolan will be doing everything as a solo.
