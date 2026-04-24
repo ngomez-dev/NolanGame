@@ -18,6 +18,6 @@ Features include Collision detection between the ball, the platform, the blocks,
 
 Once you download the file and put it in your python folder, open windows powershell. Once you change the location to your python folder using "cd (python folder name)," type "py NolanGame.py" and the program should pop up.
 
-# Team Members and ROles
+# Team Members and Roles
 
 Nolan will be doing everything as a solo.
