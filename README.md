@@ -27,3 +27,10 @@ Once you download the file and put it in your python folder, open windows powers
 ## Team Members and Roles
 
 **Nolan**: *Solo Developer* -- Responsible for everything.
+
+
+
+
+
+
+4/28/2026 Added more comments dividing my sections to organize. Added functions changing ball movement, score, and removing blocks when colliding happens. Established Ball movement.
