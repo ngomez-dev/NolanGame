@@ -34,3 +34,5 @@ Once you download the file and put it in your python folder, open windows powers
 
 
 4/28/2026 Added more comments dividing my sections to organize. Added functions changing ball movement, score, and removing blocks when colliding happens. Established Ball movement.
+
+4/29/2026 Added left and right wall collisions and added game over feature when the ball goes below the platform.
