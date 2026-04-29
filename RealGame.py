@@ -35,6 +35,8 @@ for i in range(5):
 
 
 score = 0
+lives = 3
+level = 1
 running = True
 
 while running:
@@ -63,6 +65,7 @@ while running:
     pygame.draw.ellipse(screen, WHITE, ball)
     for brick in bricks:
         pygame.draw.rect(screen,(RED), brick)
+    # pygame.draw.circle(screen,RED,(WIDTH-30 - ))  (work in progress)
 
 
 
@@ -81,7 +84,7 @@ while running:
     for brick in bricks:
         if ball.colliderect(brick):
             ball_y_speed = -ball_y_speed
-            score = score + 1
+            score = score + 10
             bricks.remove(brick)
 
     if ball.left <= 0 or ball.right >= WIDTH:
@@ -92,8 +95,14 @@ while running:
 
 
     if ball.bottom >= HEIGHT:
-        print("Game Over, Score:", score)
-        running = False
+        lives = lives - 1
+        if lives > 0:
+            ball.x, ball.y = 390, 300
+            ball_y_speed = -4
+        else:
+            print("Game Over, Score:", score)
+            running = False
+
 
 
 
