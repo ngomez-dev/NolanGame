@@ -84,7 +84,16 @@ while running:
             score = score + 1
             bricks.remove(brick)
 
+    if ball.left <= 0 or ball.right >= WIDTH:
+        ball_x_speed = -ball_x_speed
 
+
+# Fail Condition
+
+
+    if ball.bottom >= HEIGHT:
+        print("Game Over, Score:", score)
+        running = False
 
 
 
