@@ -3,6 +3,8 @@ import pygame
 
 pygame.init()
 
+hearts = pygame.image.load('3hearts.png')
+
 # Screen
 WIDTH = 800
 HEIGHT = 600
@@ -15,6 +17,7 @@ WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
 RED = (255, 0, 0)
 BLACK = (0, 0, 0)
+CYAN = (9, 221, 232)
 
 # Platform
 platform = pygame.Rect(350, 550, 100, 10)
@@ -41,7 +44,7 @@ running = True
 
 while running:
 
-#Events/Keys
+#Keys
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -61,11 +64,12 @@ while running:
     screen.fill(BLACK)
 
 # Drawings
-    pygame.draw.rect(screen, BLUE, platform)
+    pygame.draw.rect(screen, CYAN, platform)
     pygame.draw.ellipse(screen, WHITE, ball)
     for brick in bricks:
         pygame.draw.rect(screen,(RED), brick)
     # pygame.draw.circle(screen,RED,(WIDTH-30 - ))  (work in progress)
+    # screen.blit(hearts, ())
 
 
 
@@ -89,6 +93,8 @@ while running:
 
     if ball.left <= 0 or ball.right >= WIDTH:
         ball_x_speed = -ball_x_speed
+    if ball.top >= HEIGHT: 
+        ball_y_speed = -ball_y_speed
 
 
 # Fail Condition
