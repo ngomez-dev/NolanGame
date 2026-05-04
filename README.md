@@ -39,4 +39,6 @@ Once you download the file and put it in your python folder, open windows powers
 
 4/29/2026 Added lives system, still yet to display the hearts in the bottom right of the screen.
 
+5/1/2026 Worked on displaying the hearts, beginning to brainstorm and code the levels system
+
 
