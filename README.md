@@ -43,4 +43,6 @@ Once you download the file and put it in your python folder, open windows powers
 
 5/4/2026 Displayed the hearts on screen. 
 
+5/5/2026 Added some more comments to organize the code.
+
 
