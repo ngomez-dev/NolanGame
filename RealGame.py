@@ -2,12 +2,21 @@ import pygame
 
 # Make direction change only for the bottom of Bricks
 # make it bounce of the top
+#score counter in Game
+#game over screen]
+# levels
+#powerups
 
 
 
 pygame.init()
 
-hearts = pygame.image.load('3hearts.png')
+Heart1 = pygame.image.load('Heart1.png')
+Heart1 = pygame.transform.scale(Heart1, (Heart1.get_width()*.2, Heart1.get_height()*.2))
+Heart2 = pygame.image.load('Heart1.png')
+Heart2 = pygame.transform.scale(Heart2, (Heart2.get_width()*.2, Heart2.get_height()*.2))
+Heart3 = pygame.image.load('Heart1.png')
+Heart3 = pygame.transform.scale(Heart3, (Heart3.get_width()*.2, Heart3.get_height()*.2))
 
 
 
@@ -74,7 +83,12 @@ while running:
     pygame.draw.ellipse(screen, WHITE, ball)
     for brick in bricks:
         pygame.draw.rect(screen,(RED), brick)
-    # screen.blit(hearts, ())
+    if lives >= 1:
+        screen.blit(Heart1, (WIDTH-60, HEIGHT-100))
+    if lives >= 2:
+        screen.blit(Heart2, (WIDTH-110, HEIGHT-100))
+    if lives >= 3:
+        screen.blit(Heart3, (WIDTH-160, HEIGHT-100))
 
 
 
