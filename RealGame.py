@@ -11,6 +11,8 @@ import pygame
 
 pygame.init()
 
+
+# Setup and Images
 Heart1 = pygame.image.load('Heart1.png')
 Heart1 = pygame.transform.scale(Heart1, (Heart1.get_width()*.2, Heart1.get_height()*.2))
 Heart2 = pygame.image.load('Heart1.png')
@@ -51,12 +53,13 @@ for i in range(5):
         brick = pygame.Rect(j * 80 + 5, i * 30 + 5, 70, 20)
         bricks.append(brick)
 
-
+# Variables
 score = 0
 lives = 3
 level = 1
 running = True
 
+# Game Loop
 while running:
 
 #Events/Keys
@@ -113,8 +116,8 @@ while running:
 
     if ball.left <= 0 or ball.right >= WIDTH:
         ball_x_speed = -ball_x_speed
-    if ball.top >= HEIGHT:
-        ball_y_speed = -ball_y_speed
+    # if ball.top >= HEIGHT:
+        # ball_y_speed = -ball_y_speed
 
 
 # Fail Condition
