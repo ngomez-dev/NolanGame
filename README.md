@@ -41,4 +41,6 @@ Once you download the file and put it in your python folder, open windows powers
 
 5/1/2026 Worked on displaying the hearts, beginning to brainstorm and code the levels system
 
+5/4/2026 Displayed the hearts on screen. 
+
 
