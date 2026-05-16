@@ -1,15 +1,16 @@
 import pygame
+import random
 
-# Make direction change only for the bottom of Bricks
-# make it bounce of the top
-#score counter in Game
-#game over screen]
-# levels
+#Randomize the colors of bricks, background, and platform every level.
+#game over screen
 #powerups
 
 
 
 pygame.init()
+
+font = pygame.font.SysFont("Arial", 32)
+
 
 
 # Setup and Images
@@ -26,7 +27,6 @@ Heart3 = pygame.transform.scale(Heart3, (Heart3.get_width()*.2, Heart3.get_heigh
 WIDTH = 800
 HEIGHT = 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-
 clock = pygame.time.Clock()
 
 # Colors
@@ -42,8 +42,8 @@ platform = pygame.Rect(350, 550, 100, 10)
 
 # Ball
 ball = pygame.Rect(390, 300, 20, 20)
-ball_x_speed = 4
-ball_y_speed = -4
+ball_x_speed = 5
+ball_y_speed = -5
 
 
 # Bricks
@@ -57,22 +57,34 @@ for i in range(5):
 score = 0
 lives = 3
 level = 1
+platform_speed = 6
 running = True
+
+#Randomize colors
+brick_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+platform_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
 # Game Loop
 while running:
 
+
+    text_surface = font.render("Score: "+str(score) , True, (255, 255, 255))
+
+
 #Events/Keys
+
+    # Quit
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-
+# Holding Keys
     keys = pygame.key.get_pressed()
     if keys[pygame.K_LEFT]:
-        platform.x = platform.x - 6
+        platform.x = platform.x - platform_speed
     if keys[pygame.K_RIGHT]:
-        platform.x = platform.x + 6
+        platform.x = platform.x + platform_speed
+
 # Ball Movement
     ball.x = ball.x + ball_x_speed
     ball.y = ball.y + ball_y_speed
@@ -82,10 +94,13 @@ while running:
     screen.fill(BLACK)
 
 # Drawings
-    pygame.draw.rect(screen, CYAN, platform)
+    pygame.draw.rect(screen, platform_color, platform)
     pygame.draw.ellipse(screen, WHITE, ball)
+    screen.blit(text_surface,(350, 300))
     for brick in bricks:
-        pygame.draw.rect(screen,(RED), brick)
+        pygame.draw.rect(screen,(brick_color), brick)
+
+#Hearts
     if lives >= 1:
         screen.blit(Heart1, (WIDTH-60, HEIGHT-100))
     if lives >= 2:
@@ -102,22 +117,51 @@ while running:
     pygame.display.update()
     clock.tick(60)
 
-# Ball Colliding
+# Ball Colliding with Platform
     if ball.colliderect(platform):
         ball_y_speed=-ball_y_speed
 
 
-
+ # Colliding with Bricks
     for brick in bricks:
         if ball.colliderect(brick):
-            ball_y_speed = -ball_y_speed
+
+#if the top of the ball is colliding with the bottom of the brick
+            if ball.top <= brick.bottom and ball_y_speed < 0:
+                #change the speed
+                ball_y_speed = -ball_y_speed
+#Bottom of ball colliding with top of brick
+            elif ball.bottom >= brick.top and ball_y_speed > 0:
+                ball_y_speed = -ball_y_speed
+            else:
+                ball_x_speed = -ball_x_speed
+
             score = score + 10
             bricks.remove(brick)
-
+# Colliding off left and right walls and top.
     if ball.left <= 0 or ball.right >= WIDTH:
         ball_x_speed = -ball_x_speed
-    # if ball.top >= HEIGHT:
-        # ball_y_speed = -ball_y_speed
+    if ball.top <= 0:
+        ball_y_speed = -ball_y_speed
+
+# Continous Level System
+    if len(bricks) == 0:
+        level = level + 1
+        ball.x, ball.y = 390,300
+        ball_y_speed = (-1) * abs(ball_y_speed)
+        ball_y_speed = ball_y_speed - 2
+        # Spawn Bricks
+        bricks = []
+        for i in range(5):
+            for j in range(10):
+                brick = pygame.Rect(j * 80 + 5, i * 30 + 5, 70, 20)
+                bricks.append(brick)
+        platform_speed += 2
+#Randomize colors every level
+        brick_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+        platform_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+
+
 
 
 # Fail Condition
@@ -127,7 +171,9 @@ while running:
         lives = lives - 1
         if lives > 0:
             ball.x, ball.y = 390, 300
-            ball_y_speed = -4
+            ball_y_speed = -5 - level
+
+# Game Over
         else:
             print("Game Over, Score:", score)
             running = False
