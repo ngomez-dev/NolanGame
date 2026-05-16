@@ -54,7 +54,7 @@ Description of recent progress-
 
 The main work that has ben getting done recently was fixing up the collisions and adding the level system which was a major update. The collisions before were really bad with the ball sometimes going straight through the blocks without changing direction. The code for my collisions was also contradictory but I'm not even gonna get into that. I added the level system, making it so that after you clear more blocks everything changes colors, and the ball gets faster, making the game a good amount harder. Your platform increases speed aswell though. There is a score counter to see how well you do every run.
 
-One major upgrade I inted to make on my game before the end of the semester would be
+One major upgrade I inted to make on my game before the end of the semester would be adding the game over screen, and adding powerups. Those are the only two things that I have been thinking about. Adding powerups will be a pretty hard game feature to add. It will be things such as a bomb that explodes blocks around, a fireball that makes the ball faster and runs through the blocks, and any other things I think about. This a big maybe because I don't even know if I'll have time to add it before finals week.
 
 
 
