@@ -1,8 +1,8 @@
 import pygame
 import random
+import time
 
-#Randomize the colors of bricks, background, and platform every level.
-#game over screen
+
 #powerups
 
 
@@ -69,7 +69,7 @@ while running:
 
 
     text_surface = font.render("Score: "+str(score) , True, (255, 255, 255))
-
+    Game_Over = font.render("Game Over" , True, (255, 255, 255))
 
 #Events/Keys
 
@@ -114,8 +114,7 @@ while running:
 
 
 
-    pygame.display.update()
-    clock.tick(60)
+
 
 # Ball Colliding with Platform
     if ball.colliderect(platform):
@@ -175,11 +174,16 @@ while running:
 
 # Game Over
         else:
+
+            screen.blit(Game_Over,(350,330))
+            pygame.display.update()
+            pygame.time.wait(1000)
             print("Game Over, Score:", score)
             running = False
 
 
-
+    pygame.display.update()
+    clock.tick(60)
 
 
 
