@@ -97,7 +97,7 @@ while running:
     ball.x = ball.x + (ball_x_speed * speed_multiplier)
     ball.y = ball.y + (ball_y_speed * speed_multiplier)
 
-    #Powerups
+    #Fireball
     fireball.x = fireball.x + fireball_x_speed
     fireball.y = fireball.y + fireball_y_speed
 
@@ -109,7 +109,7 @@ while running:
         start_time = 600
         speed_multiplier = 1.5
 
-
+    #10 Sec Timer
     if start_time > 0:
         start_time = start_time - 1
     if start_time == 0:
@@ -136,7 +136,7 @@ while running:
     if lives >= 4:
         screen.blit(Heart4, (WIDTH-210, HEIGHT-100))
 
-
+# Fireball Colissions
     if fireball.left <= 0 or fireball.right >= WIDTH:
         fireball_x_speed = -fireball_x_speed
     if fireball.top <= 0:
