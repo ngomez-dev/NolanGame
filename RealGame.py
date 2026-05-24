@@ -20,7 +20,8 @@ Heart2 = pygame.image.load('Heart1.png')
 Heart2 = pygame.transform.scale(Heart2, (Heart2.get_width()*.2, Heart2.get_height()*.2))
 Heart3 = pygame.image.load('Heart1.png')
 Heart3 = pygame.transform.scale(Heart3, (Heart3.get_width()*.2, Heart3.get_height()*.2))
-
+Heart4 = pygame.image.load('Heart1.png')
+Heart4 = pygame.transform.scale(Heart4, (Heart4.get_width()*.2, Heart4.get_height()*.2))
 
 
 # Screen
@@ -41,9 +42,14 @@ platform = pygame.Rect(350, 550, 100, 10)
 
 
 # Ball
-ball = pygame.Rect(390, 300, 20, 20)
+ball = pygame.Rect(390, 300, 35, 35)
 ball_x_speed = 5
 ball_y_speed = -5
+
+#fireball
+fireball = pygame.Rect(400, 400, 20, 20)
+fireball_x_speed = 4
+fireball_y_speed = -4
 
 
 # Bricks
@@ -55,10 +61,12 @@ for i in range(5):
 
 # Variables
 score = 0
-lives = 3
+lives = 4
 level = 1
 platform_speed = 6
 running = True
+start_time = 0
+speed_multiplier = 1
 
 #Randomize colors
 brick_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
@@ -81,14 +89,31 @@ while running:
 # Holding Keys
     keys = pygame.key.get_pressed()
     if keys[pygame.K_LEFT]:
-        platform.x = platform.x - platform_speed
+        platform.x = platform.x - (platform_speed * speed_multiplier)
     if keys[pygame.K_RIGHT]:
-        platform.x = platform.x + platform_speed
+        platform.x = platform.x + (platform_speed * speed_multiplier)
 
 # Ball Movement
-    ball.x = ball.x + ball_x_speed
-    ball.y = ball.y + ball_y_speed
+    ball.x = ball.x + (ball_x_speed * speed_multiplier)
+    ball.y = ball.y + (ball_y_speed * speed_multiplier)
 
+    #Powerups
+    fireball.x = fireball.x + fireball_x_speed
+    fireball.y = fireball.y + fireball_y_speed
+
+    if fireball.colliderect(platform):
+        fireball_y_speed = -fireball_y_speed
+
+    if ball.colliderect(fireball):
+        fireball.x = -1000
+        start_time = 600
+        speed_multiplier = 1.5
+
+
+    if start_time > 0:
+        start_time = start_time - 1
+    if start_time == 0:
+        speed_multiplier = 1
 
 
     screen.fill(BLACK)
@@ -97,6 +122,7 @@ while running:
     pygame.draw.rect(screen, platform_color, platform)
     pygame.draw.ellipse(screen, WHITE, ball)
     screen.blit(text_surface,(350, 300))
+    pygame.draw.ellipse(screen,RED, fireball)
     for brick in bricks:
         pygame.draw.rect(screen,(brick_color), brick)
 
@@ -107,10 +133,27 @@ while running:
         screen.blit(Heart2, (WIDTH-110, HEIGHT-100))
     if lives >= 3:
         screen.blit(Heart3, (WIDTH-160, HEIGHT-100))
+    if lives >= 4:
+        screen.blit(Heart4, (WIDTH-210, HEIGHT-100))
 
 
+    if fireball.left <= 0 or fireball.right >= WIDTH:
+        fireball_x_speed = -fireball_x_speed
+    if fireball.top <= 0:
+        fireball_y_speed = -fireball_y_speed
+    if fireball.bottom >= HEIGHT:
+        fireball_y_speed = -fireball_y_speed
 
-
+    if fireball.colliderect(platform):
+        fireball_y_speed = -fireball_y_speed
+    for brick in bricks:
+        if fireball.colliderect(brick):
+            if fireball.top <= brick.bottom and fireball_y_speed < 0:
+                fireball_y_speed = -fireball_y_speed
+            elif fireball.bottom >= brick.top and fireball_y_speed > 0:
+                fireball_y_speed = -fireball_y_speed
+            else:
+                fireball_x_speed = -fireball_x_speed
 
 
 
@@ -147,8 +190,15 @@ while running:
     if len(bricks) == 0:
         level = level + 1
         ball.x, ball.y = 390,300
+        start_time = 0
+        speed_multiplier = 1
         ball_y_speed = (-1) * abs(ball_y_speed)
         ball_y_speed = ball_y_speed - 2
+        fireball.x, fireball.y = 400,400
+        fireball_x_speed = 4
+        fireball_y_speed = -4
+
+
         # Spawn Bricks
         bricks = []
         for i in range(5):
@@ -166,7 +216,7 @@ while running:
 # Fail Condition
 
 
-    if ball.bottom >= HEIGHT:
+    if ball.top > HEIGHT:
         lives = lives - 1
         if lives > 0:
             ball.x, ball.y = 390, 300
