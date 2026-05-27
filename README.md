@@ -52,9 +52,16 @@ Once you download the file and put it in your python folder, open windows powers
 
 Description of recent progress-
 
-The main work that has ben getting done recently was fixing up the collisions and adding the level system which was a major update. The collisions before were really bad with the ball sometimes going straight through the blocks without changing direction. The code for my collisions was also contradictory but I'm not even gonna get into that. I added the level system, making it so that after you clear more blocks everything changes colors, and the ball gets faster, making the game a good amount harder. Your platform increases speed aswell though. There is a score counter to see how well you do every run.
+The main work that has been getting done recently was fixing up the collisions and adding the level system which was a major update. The collisions before were really bad with the ball sometimes going straight through the blocks without changing direction. The code for my collisions was also contradictory but I'm not even gonna get into that. I added the level system, making it so that after you clear more blocks everything changes colors, and the ball gets faster, making the game a good amount harder. Your platform increases speed aswell though. There is a score counter to see how well you do every run.
 
 One major upgrade I inted to make on my game before the end of the semester would be adding the game over screen, and adding powerups. Those are the only two things that I have been thinking about. Adding powerups will be a pretty hard game feature to add. It will be things such as a bomb that explodes blocks around, a fireball that makes the ball faster and runs through the blocks, and any other things I think about. This a big maybe because I don't even know if I'll have time to add it before finals week.
+
+
+
+
+All of the individual features I have my built on my game include collisions with bricks and platforms and walls, ball movement, platform moving, level system, lives system, speed multiplier system, color randomizing system, countdown system, game over screen, and more pieces of the game. This is a brickbreaker game where you have to keep the ball up moving the platform with your arrow keys. The ball collides in many different ways, sometimes eliminating a multitude of blocks in a big collision sequence. If your ball encounters a fireball, it gets faster and starts running through bricks faster than usual. 
+
+There are a few bugs in my game. One bug is that when the platform collides with the ball in a certain way where it kind of slices it down the middle, the ball gets stuck inside the platform shaking around. I think I have an idea about how to fix it, but it rarely happens and it unbugs itself after a little bit. You can end up losing a life though. I've seen one issue where the fireball glitches in between the bricks since it cant destroy them. That rarely happens and the fireball gets out after a second. That's why I haven't put any energy towards fixing them. If I had more time to improve the games I would just add more powerups. That's the only thing I had left to do but I only had the time to add one. One idea I had was adding a bomb that explodes on collision and breaks bricks in the area.
 
 
 
